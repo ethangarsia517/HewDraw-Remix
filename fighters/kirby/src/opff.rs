@@ -18,6 +18,8 @@ unsafe fn final_cutter_landing_bugfix(fighter: &mut L2CFighterCommon) {
 }
 
 unsafe fn hammer_swing_drift_landcancel(fighter: &mut smash::lua2cpp::L2CFighterCommon) {
+    if !fighter.is_motion(Hash40::new("special_air_s_max")) {
+
     if fighter.is_status(*FIGHTER_KIRBY_STATUS_KIND_SPECIAL_S_ATTACK) {
         if fighter.is_situation(*SITUATION_KIND_GROUND) && fighter.is_prev_situation(*SITUATION_KIND_AIR) {
             AttackModule::clear_all(fighter.module_accessor);
@@ -31,6 +33,8 @@ unsafe fn hammer_swing_drift_landcancel(fighter: &mut smash::lua2cpp::L2CFighter
                 KineticModule::change_kinetic(fighter.module_accessor, *FIGHTER_KINETIC_TYPE_FALL);
             }
         }
+    }
+    
     }
 }
 
